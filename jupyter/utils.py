@@ -9,7 +9,7 @@ from sklearn import preprocessing
 # A crude way to compute fold-change values adjusting for poorly expressed genes
 # Inspired by DESeq2
 
-def foldchange(comparison, rpk, tpm, lines, reps, alpha=1e-4):
+def foldchange(comparison, rpk, tpm, lines, reps, alpha=1e-3):
     
     laba = ['{}_{}'.format(lines[comparison[0]], r) for r in reps ]
     labm = ['{}_{}'.format(lines[comparison[1]], r) for r in reps ]
