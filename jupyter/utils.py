@@ -29,10 +29,11 @@ def foldchange(comparison, rpk, tpm, lines, reps, alpha=1e-3):
     return  attenuate*am.where(am > ma, ma)
     
 # Remove genes where at least one population reports all zero values
-def mask_nonzeros(rpk, lines, reps):
-    nonzero_mask = pd.Series(True, index=rpk.index)
-    for l in lines:
-        nonzero_mask[ rpk[ ['{}_{}'.format(l,r) for r in reps] ].mean(axis=1) == 0 ] = False
+def mask_nonzeros(rpk, lines, reps, thr=0):
+    #nonzero_mask = pd.Series(True, index=rpk.index)
+    #for l in lines:
+    #    nonzero_mask[ rpk[ ['{}_{}'.format(l,r) for r in reps] ].mean(axis=1) == 0 ] = False
+    nonzero_mask = rpk.sum(axis=1) > thr
         
     return nonzero_mask
 
